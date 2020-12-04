@@ -13,7 +13,7 @@ from tkinter import *
 from tkinter import messagebox as MessageBox
 #import geopandas as gpd
 
-'''
+
 #Ingresar al sitio y descargar el CSV con los datos de Colombia
 url="https://www.datos.gov.co/api/views/gt2j-8ykr/rows.csv?accessType=DOWNLOAD&bom=true&format=true"
 response = requests.get(url)
@@ -25,7 +25,7 @@ url="https://datosabiertos.bogota.gov.co/dataset/44eacdb7-a535-45ed-be03-16dbbea
 response = requests.get(url)
 with open(os.path.join("Archivo", "DataBogota.csv"), "wb") as f:
     f.write(response.content)
-'''
+
 
 #///////////////////COLOMBIA///////////////////////////////////////
 #Abrir el CSV que se descargó de Colombia y obtener la información
@@ -40,7 +40,7 @@ data['Fecha']= pd.to_datetime(data['Fecha'])
 #data['Fecha'] = data['Fecha'].apply(pd.to_datetime)
 #data['Fecha']= data['Fecha'].apply(pd.to_datetime, format='%m/%d/%Y')
 
-'''
+
 #GRÁFICAS DE BARRAS
 
 #fig0=plt.figure(figsize=(12,6))
@@ -117,7 +117,7 @@ fig.update_layout(
     )
 )
 plotly.offline.plot(fig)
-'''
+
 #///////////////////BOGOTÁ//////////////////////////////////////
 #Abrir el CSV que se descargó de Bogotá y obtener la información
 
@@ -127,7 +127,7 @@ dato=dato.drop([0], axis=0) #Borrar la primera fila que tiene texto innecesario
 dato.Edad=dato.Edad.astype(float) #Convertir la columna Edad a float
 age_groups = pd.cut(dato.Edad, bins=[19, 40, 65, np.inf]) #Rangos de edad
 
-'''
+
 #GRÁFICAS DE BARRAS
 
 fig=plt.figure(figsize=(12,6))
@@ -221,7 +221,7 @@ fig.update_layout(
 )
 plotly.offline.plot(fig)
 
-'''
+
 #///////////////////////////////////////REGRESIÓN DE DATOS//////////////////////////////////////////////////////
 
 #print(data.Fecha[data.Fecha.dt.month != 12.0].dt.month.value_counts())
@@ -262,4 +262,3 @@ y= a[1]*(14)+a[0] #Fórmula de la recta, donde a[1] es la pendiente, se varia el
 y1=f"{y:.1f}"
 #print('Al final de Febrero del 2021, se tendrán aproximadamente '+str(y1)+' casos en Colombia')
 MessageBox.showinfo("Proyección Mes 3", 'Teniendo en cuenta los resultados de los meses anteriores, se proyecta que al final de Febrero del 2021, se tendrán aproximadamente '+str(y1)+' casos en Colombia')
-
